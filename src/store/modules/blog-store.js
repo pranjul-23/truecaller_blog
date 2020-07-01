@@ -1,5 +1,6 @@
 import api from '@/api/common'
 import errorHandler from '@/api/error-handler'
+import relatedPost from '@/api-mock/related-post'
 
 export default {
   namespaced: true,
@@ -59,10 +60,10 @@ export default {
     getRelatedPosts ({ commit, dispatch }, { params, payload } = {}) {
       api.getRelatedPost(
         response => {
-          commit('setRelatedPosts', response.data)
+          // commit('setRelatedPosts', response.data)
         },
         error => {
-          commit('setRelatedPosts', error.response.data)
+          commit('setRelatedPosts', relatedPost.response.value)
           errorHandler.handleErrors(dispatch, error)
         },
         payload,

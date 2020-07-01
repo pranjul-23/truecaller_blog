@@ -1,5 +1,10 @@
 # truecaller_blog
 
+## Install vue cli service
+```
+npm install -g @vue/cli
+```
+
 ## Project setup
 ```
 npm install

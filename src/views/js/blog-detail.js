@@ -33,7 +33,7 @@ export default {
       return this.getCategory.categories || []
     },
     getRelatedPost () {
-      return this.getRelatedPosts
+      return this.getRelatedPosts ? this.getRelatedPosts.hits : []
     }
   },
   watch: {
@@ -45,6 +45,19 @@ export default {
           }
         })
       }
+    },
+    '$route.params.postId': function (newVal) {
+      this.$store.dispatch('blogs/getBlogById', {
+        success: () => {
+          this.isVisible = false
+        },
+        fail: () => {
+          this.isVisible = true
+        },
+        payload: {
+          postId: this.$route.params.postId
+        }
+      })
     }
   },
   created () {
@@ -66,6 +79,9 @@ export default {
   methods: {
     getPostsByMe (type, item) {
       this.$router.push({ path: '/', query: { [type]: item.slug } })
+    },
+    showBlogDetails (blog) {
+      this.$router.push(`/details/${blog}`)
     }
   }
 }

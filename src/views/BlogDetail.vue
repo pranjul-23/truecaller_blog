@@ -30,16 +30,8 @@
         <div class="related-posts">
           <div class="related-posts__head">Related Posts</div>
           <div class="related-posts__list">
-            <div class="item" v-if="getRelatedPost.error !== 'unauthorized'">
-              related post will appear here..
-            </div>
-            <div
-              class="item error"
-              v-if="getRelatedPost.error === 'unauthorized'"
-            >
-              Something went wrong...
-              <br />
-              {{ getRelatedPost }}
+            <div class="item" v-for="(post, index) in getRelatedPost" :key="index">
+              <div @click="showBlogDetails(post.fields.post_id)">Post: {{post.fields.post_id}}</div>
             </div>
           </div>
         </div>
